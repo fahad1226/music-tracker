@@ -14,12 +14,13 @@ app.use(morgan('combine'))
 app.use(bodyParser.json())
 app.use(cors())
 
-
 require('./router/routes.js')(app)
-
 
 sequelize.sync()
 	.then( () => {
 		app.listen(process.env.PORT || 3000)
 		console.log(`server started on port ${config.port}`);
 	})
+
+
+// {force:true} to delete all data from database

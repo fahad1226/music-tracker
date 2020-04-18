@@ -4,13 +4,12 @@
 
 		<div class="row offset-2">
 			<div class="col-8">
-				<h1 class="display-4 text-center">Registration Page</h1>
+				<h1 class="display-4 text-center">Login User</h1>
 				<v-form
 				lazy-validation
 				>
 				<v-text-field
 				v-model="email"
-				prepend-icon="mdi-account-circle"
 				:counter="10"
 				label="Email"
 				required
@@ -20,36 +19,22 @@
 				v-model="password"
 				:counter="8"
 				label="Password"
-				:type="showPassowrd ? 'text' :  'password' "
-		        prepend-icon="mdi-lock"
-		        :append-icon="showPassowrd ? 'mdi-eye' : 'mdi-eye-off' "
-		        @click:append="showPassowrd = ! showPassowrd"
 				required
 				></v-text-field>
 
 			  <div class="my-2">
-		        <v-btn @click="register" class="cyan text-center">Register</v-btn>
+		        <v-btn @click="login" class="cyan text-center">Login</v-btn>
 		      </div>
 			<div class="error" v-html="error"  />
 
 		</v-form>
+
+	
 	</div>
 </div>
 </div>
-
-
-
-	<!-- <div>
-		<h1>Register</h1>
-		<center>
-			<input type="email" placeholder="Email" v-model="email"> <br>
-			<input type="password" placeholder="Password" v-model="password"> <br>
-			<button @click="register">Register</button>
-			<div class="error" v-html="error"  />
-		</center>
-	</div> -->
+	
 </template>
-
 
 <script>
 	import AuthenticationService from '@/services/AuthenticationService'
@@ -59,31 +44,37 @@
 				email: '',
 				password: '',
 				error: null,
-				showPassowrd: false,
-				info: []
+				users: []
 			}
 		},
+		mounted() {
+			this.getData()
+		},
 		methods: {
-			async register() {
+			async login() {
 				try {
-					const response = await AuthenticationService.register({
+					const response = await AuthenticationService.login({
 						email: this.email,
 						password: this.password
 					})
 					this.$store.dispatch('setToken',response.data.token)
-					this.$store.dispatch('setUser',response.data.token)
+					this.$store.dispatch('setUser',response.data.user)
 				} catch(error) {
 					this.error = error.response.data.error
 				}
-				
-				
 			},
+
 			async getData() {
-				const response = await AuthenticationService.get()
+				try {
+					const response = await AuthenticationService.getData()
+					this.users = response.data
+				} catch(error) {
+					this.errro = error.response.data.error
+				}
 			}
 		}
 	}
-</script>
+</script> 
 
 
 <style scoped>

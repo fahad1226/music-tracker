@@ -10,5 +10,9 @@ module.exports = {
 			storage: './musictracker.sqlite'
 		},
 		operatorsAliases: false
+	},
+
+	authentication : {
+		jwtSecret: process.env.JWT_SECRET || 'secret'
 	}
 }
