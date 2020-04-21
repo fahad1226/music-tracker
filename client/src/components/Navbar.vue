@@ -26,7 +26,7 @@
 
    <v-btn icon>
     <v-icon>mdi-heart</v-icon>
-</v-btn>
+  </v-btn>
 
 
 <router-link to="login" tag="span">

@@ -13,3 +13,13 @@ sequelize.define('Song', {
 
 
 
+
+
+/*"title": "summer of 69",
+"artist": "Brayan Adams",
+"genre": "Rock",
+"album": "Young",
+"albumImageUrl": "www.google.com/summer of 69",
+"youtubeId": "www.youtube.com/summer of 69",
+"lyrics": "www.google.com/summer of 69 lyrics" ,
+"tab": */

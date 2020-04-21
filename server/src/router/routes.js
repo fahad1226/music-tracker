@@ -1,6 +1,6 @@
 const AuthenticationController = require('../controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('../policies/AuthenticationControllerPolicy')
-const SongsCOntroller = require('../controllers/SongsCOntroller')
+const SongsController = require('../controllers/SongsController')
 
 
 module.exports = (app) => {
@@ -18,6 +18,10 @@ module.exports = (app) => {
 	)
 
 	app.get('/songs',
-		SongsCOntroller.index
+		SongsController.index
+	)
+
+	app.post('/songs',
+		SongsController.post
 	)
 }

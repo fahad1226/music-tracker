@@ -1,4 +1,4 @@
-const { Song}  = require('../models')
+const { Song }  = require('../models')
 
 module.exports = {
 	async index(req, res) {
@@ -6,9 +6,11 @@ module.exports = {
 			const songs = await Song.findAll({
 				limit:10
 			})
-			res.send(sonsg)
+			res.send(songs)
 		} catch(e) {
-			res.status(404).send('not found')
+			res.status(500).send({
+				error: 'an error has ocured trying to fetch the songs,try agin.'
+			})
 		}
 	},
 
@@ -18,7 +20,7 @@ module.exports = {
 			res.send(songs)
 
 		} catch(e) {
-			res.status(401).send('an error has occured fetching the songs,try again please.')
+			res.status(401).send('an error has occured creating the song,try again please.')
 		}
 	}
 }
