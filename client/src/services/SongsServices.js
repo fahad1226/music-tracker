@@ -6,5 +6,12 @@ export default {
 	},
 	post(song) {
 		return Api().post('songs',song)
+	},
+	show(songId) {
+		return Api().get(`songs/${songId}`)
+	},
+	put(song_info) {
+		console.log('update clicked');
+		return Api().put(`songs/${song_info.id}`,song_info)
 	}
 }

@@ -22,5 +22,31 @@ module.exports = {
 		} catch(e) {
 			res.status(401).send('an error has occured creating the song,try again please.')
 		}
+	},
+
+	async show(req, res) {
+		try {
+			const song = await Song.findByPk(req.params.songId)
+			res.send(song)
+
+		} catch(e) {
+			res.status(401).send('an error has occured creating the song,try again please.'+e)
+		}
+	},
+
+	async put(req,res) {
+		try {
+			const song = await Song.update(req.body, {
+				where: {
+					id: req.params.songId
+				}
+			})
+			res.send(req.body)
+		} catch(e) {
+			res.status(500).send({
+				error: 'something went wrong while updating song,try again.'+e
+			})
+		}
 	}
+
 }
